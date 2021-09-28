@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-oauth2-auto-simple</module>
+        <module>spring-oauth2-authorization</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -22,6 +23,12 @@
         <spring.boot.version>2.4.1</spring.boot.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
