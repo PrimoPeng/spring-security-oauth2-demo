@@ -6,6 +6,9 @@
     <modules>
         <module>spring-oauth2-auto-simple</module>
         <module>spring-oauth2-authorization</module>
+        <module>spring-oauth2-authorization-mysql</module>
+        <module>spring-oauth2-authorization-redis</module>
+        <module>spring-oauth2-authorization-jwt</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
