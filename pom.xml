@@ -9,6 +9,7 @@
         <module>spring-oauth2-authorization-mysql</module>
         <module>spring-oauth2-authorization-redis</module>
         <module>spring-oauth2-authorization-jwt</module>
+        <module>spring-oauth2-authorization-expansion</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
