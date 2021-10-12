@@ -44,7 +44,7 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 .scopes("all")
                 .accessTokenValiditySeconds(Math.toIntExact(Duration.ofHours(1).getSeconds()))
                 .refreshTokenValiditySeconds(Math.toIntExact(Duration.ofHours(1).getSeconds()))
-                .resourceIds("http://example.com");
+                .redirectUris("http://example.com");
     }
 
     @Override
