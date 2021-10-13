@@ -1,9 +1,11 @@
 package com.feng.config;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -16,6 +18,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final @NonNull SecurityProperties securityProperties;
 
     /**
      * 密码加密方式，spring 5 后必须对密码进行加密
@@ -57,5 +61,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.formLogin()
+                //.loginPage("/login.html")
+                .loginPage("/oauth/login")
+                //.loginProcessingUrl("/authorization/form")
+                .loginProcessingUrl(securityProperties.getLoginProcessingUrl());
+                //.and()
+                //.csrf().disable();
     }
 }
