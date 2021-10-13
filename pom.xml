@@ -10,6 +10,8 @@
         <module>spring-oauth2-authorization-redis</module>
         <module>spring-oauth2-authorization-jwt</module>
         <module>spring-oauth2-authorization-expansion</module>
+        <module>spring-oauth2-resource</module>
+        <module>spring-oauth2-resource-jwt</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

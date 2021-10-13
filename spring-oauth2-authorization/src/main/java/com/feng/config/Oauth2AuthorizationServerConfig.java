@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 
 import java.time.Duration;
@@ -27,7 +28,7 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception{
-        /*InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
+        InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
         builder.withClient("oauth2")
                 .secret("$2a$10$lEUfBcsTgHBPtEGNmxMUSuQzhSiK69HsbonZ9vy1mNj8EGWV1zvpO")
                 .resourceIds("oauth2")
@@ -36,8 +37,9 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 .scopes("all")
                 .accessTokenValiditySeconds(Math.toIntExact(Duration.ofHours(1).getSeconds()))
                 .refreshTokenValiditySeconds(Math.toIntExact(Duration.ofHours(1).getSeconds()))
-                .resourceIds("http://example.com");*/
-        configClient(clients);
+                .redirectUris("http://example.com")
+                .resourceIds("oauth2");
+        //configClient(clients);
     }
 
     private void configClient(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -76,5 +78,10 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(this.authenticationManager);
+    }
+
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.checkTokenAccess("isAuthenticated()");
     }
 }
