@@ -1,0 +1,6 @@
+server:
+  port: 8001
+
+spring:
+  redis:
+    password: redis!@#$%^&*()_+xa87

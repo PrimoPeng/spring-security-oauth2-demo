@@ -12,6 +12,7 @@
         <module>spring-oauth2-authorization-expansion</module>
         <module>spring-oauth2-resource</module>
         <module>spring-oauth2-resource-jwt</module>
+        <module>spring-oauth2-authorization-more-grant-type</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
