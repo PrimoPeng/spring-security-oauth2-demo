@@ -36,10 +36,10 @@ public class ValidateCodeRepositoryImpl implements ValidateCodeRepository {
     }
 
     private String buildKey(ServletWebRequest request, String type) {
-        String deviceId = request.getHeader(type);
+        String deviceId = request.getParameter(type);
         if (StringUtils.isEmpty(deviceId)) {
-            throw new ValidateCodeException("请求中不存在邮箱号");
+            throw new ValidateCodeException("请求中不存在 " + type);
         }
-        return "code:" + type + ":" +  deviceId;
+        return "code:" + type + ":" + deviceId;
     }
 }

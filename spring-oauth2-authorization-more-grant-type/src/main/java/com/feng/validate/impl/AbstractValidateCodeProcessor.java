@@ -28,7 +28,18 @@ public abstract class AbstractValidateCodeProcessor implements ValidateCodeProce
 
     @Override
     public void validate(ServletWebRequest request) {
-
+        String type = getValidateCodeType(request);
+        String code = validateCodeRepository.get(request, type);
+        // 验证码是否存在
+        if (Objects.isNull(code)) {
+            throw new ValidateCodeException("获取验证码失败，请检查输入是否正确或重新发送！");
+        }
+        // 验证码输入是否正确
+        if (!code.equalsIgnoreCase(request.getParameter("code"))) {
+            throw new ValidateCodeException("验证码不正确，请重新输入！");
+        }
+        // 验证通过后，清除验证码
+        validateCodeRepository.remove(request, type);
     }
 
     /**

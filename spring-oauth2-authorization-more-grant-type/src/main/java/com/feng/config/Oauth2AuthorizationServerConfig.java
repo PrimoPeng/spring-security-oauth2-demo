@@ -1,6 +1,7 @@
 package com.feng.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,11 +18,12 @@ import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import java.time.Duration;
 
 @Configuration
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @EnableAuthorizationServer
 public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    private final @NonNull AuthenticationManager authenticationManager;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception{
