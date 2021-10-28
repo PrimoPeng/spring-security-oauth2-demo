@@ -2,6 +2,7 @@ package com.feng.config;
 
 import com.feng.config.sms.SmsAuthenticationSecurityConfig;
 import com.feng.filter.ValidateCodeFilter;
+import com.feng.validate.ValidateCodeGranterFilter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private SmsAuthenticationSecurityConfig smsAuthenticationSecurityConfig;
+
+    @Autowired
+    private ValidateCodeGranterFilter validateCodeGranterFilter;
 
     /**
      * 密码加密方式，spring 5 后必须对密码进行加密
@@ -83,6 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
         //添加过滤器
         http.addFilterBefore(validateCodeFilter, AbstractPreAuthenticatedProcessingFilter.class);
+                //.addFilterBefore(validateCodeGranterFilter, AbstractPreAuthenticatedProcessingFilter.class);
     }
 
 }

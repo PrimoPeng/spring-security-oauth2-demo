@@ -35,6 +35,8 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
         super.afterPropertiesSet();
         // 路径拦截
         urlMap.put("/auth/sms", "sms");
+        //urlMap.put("/custom/sms", "sms");
+        //urlMap.put("/oauth/sms", "sms");
     }
 
     @Override
